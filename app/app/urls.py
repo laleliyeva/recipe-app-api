@@ -25,5 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # path('api/redoc/', SpectacularRedocView.as_view(), name='redoc'),
-    path('api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'), name='api-docs'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='api-docs'),  # url_name düzəldildi
 ]
