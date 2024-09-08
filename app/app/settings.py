@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #apps
     'core',
+    'user',
+
+
     #third_party
     'rest_framework',
     'drf_spectacular',
