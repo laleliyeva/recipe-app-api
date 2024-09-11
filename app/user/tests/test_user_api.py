@@ -5,7 +5,7 @@ Tests for user api.
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-
+import uuid
 from rest_framework.test import APIClient 
 from rest_framework import status
 
@@ -26,7 +26,7 @@ class PublicUserApiTest(TestCase):
         payload = {
             'email': 'user@example.com',
             'password': 'password123',
-            'name': 'User',
+            'name': 'User NAME',
         }
         response = self.client.post(CREATE_USER_URL, payload)
 
@@ -40,7 +40,7 @@ class PublicUserApiTest(TestCase):
         payload = {
             'email': 'user@example.com',
             'password': 'password123',
-            'name': 'User',
+            'name': 'User Name',
         }
         create_user(**payload)
         response = self.client.post(CREATE_USER_URL, payload)
@@ -52,7 +52,7 @@ class PublicUserApiTest(TestCase):
         payload = {
             'email': 'user@example.com',
             'password': 'pass',
-            'name': 'User',
+            'name': 'User Safe',
         }
 
         response = self.client.post(CREATE_USER_URL, payload)
@@ -66,9 +66,12 @@ class PublicUserApiTest(TestCase):
 
     def test_create_token_for_user(self):
         """Test generates token for valid credentials."""
+
+        get_user_model().objects.all().delete()
+        # Unikal e-poçt ünvanı yaratmaq
         user_details = {
-            'name': 'Test Name',
-            'email': 'test@example.com',
+            'name': 'Test',
+            'email': 'test{}@example.com'.format(str(uuid.uuid4())),  # Unikal e-poçt
             'password': 'test-user-password123',
         }
         create_user(**user_details)
