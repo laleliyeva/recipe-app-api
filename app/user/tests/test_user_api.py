@@ -66,12 +66,9 @@ class PublicUserApiTest(TestCase):
 
     def test_create_token_for_user(self):
         """Test generates token for valid credentials."""
-
-        get_user_model().objects.all().delete()
-        # Unikal e-poçt ünvanı yaratmaq
         user_details = {
             'name': 'Test',
-            'email': 'test{}@example.com'.format(str(uuid.uuid4())),  # Unikal e-poçt
+            'email': 'test754335@example.com',  # Unikal e-poçt
             'password': 'test-user-password123',
         }
         create_user(**user_details)
