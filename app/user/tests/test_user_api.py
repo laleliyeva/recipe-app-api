@@ -123,6 +123,7 @@ class PrivateUserApiTest(TestCase):
         self.user = create_user(
             email = 'test@example.com',
             password = 'test-user-password123',
+            name = 'Test Name',
         )
 
         self.client = APIClient()
