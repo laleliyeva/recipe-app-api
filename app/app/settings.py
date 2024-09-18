@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #apps
     'core',
     'user',
+    'recipe',
 
 
     #third_party
