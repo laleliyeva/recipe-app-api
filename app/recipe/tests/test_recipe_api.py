@@ -18,7 +18,7 @@ from recipe.serializers import RecipeSerializer
 
 RECIPES_URL = reverse('recipe:recipe-list')
 
-def create_recipe(self, **params):
+def create_recipe(user, **params):
     """Create and return a sample recipe"""
     defaults = {
         'title': 'Sample Recipe Title',
@@ -28,14 +28,14 @@ def create_recipe(self, **params):
         'link': 'https://example.com/recipe.pdf'
     }
     defaults.update(params)
-    recipe = Recipe.objects.create(user=get_user_model(), **defaults)
+    recipe = Recipe.objects.create(user=user, **defaults)
     return recipe
 
-class PublicRecipeAPITest(TestCase):
+class PublicRecipeAPITests(TestCase):
     """Test unauthenticated API requests."""
 
     def setUp(self):
-        self.client = APIClient
+        self.client = APIClient()
 
     def test_auth_required(self):
         """Test auth is required to call API."""
